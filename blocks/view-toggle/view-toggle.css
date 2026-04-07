@@ -1,0 +1,47 @@
+.view-toggle {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.view-toggle .view-toggle-pill {
+  display: flex;
+  background-color: var(--toggle-bg);
+  border-radius: var(--toggle-border-radius);
+  padding: 4px;
+  gap: 4px;
+}
+
+.view-toggle .view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--toggle-border-radius);
+  background: transparent;
+  color: var(--text-color-muted);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.view-toggle .view-toggle-btn.active {
+  background-color: var(--toggle-active-bg);
+  color: var(--text-color);
+}
+
+.view-toggle .view-toggle-btn:hover:not(.active) {
+  color: var(--text-color);
+}
+
+.view-toggle .view-toggle-btn svg {
+  flex-shrink: 0;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "product-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Product API for pushing AI-generated products into AEM EDS via DA",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "busboy": "^1.6.0"
+  }
+}
