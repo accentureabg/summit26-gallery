@@ -9,7 +9,7 @@ header .nav-wrapper {
 header nav {
   box-sizing: border-box;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin: auto;
   max-width: 1440px;
@@ -39,7 +39,7 @@ header .nav-brand {
   font-size: 28px;
   font-weight: 600;
   line-height: 1.1;
-  max-width: 200px;
+  max-width: 140px;
 }
 
 @media (width >= 1024px) {
