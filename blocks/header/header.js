@@ -18,15 +18,16 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  // Assign nav classes: first = brand, last = tools, middle = sections
-  const sections = [...nav.children];
-  if (sections.length >= 1) sections[0].classList.add('nav-brand');
-  if (sections.length >= 3) {
-    sections[sections.length - 1].classList.add('nav-tools');
-    sections.slice(1, -1).forEach((s) => s.classList.add('nav-sections'));
-  } else if (sections.length === 2) {
-    sections[1].classList.add('nav-tools');
+  // Assign nav classes: first = brand, section with menu link = tools, rest = sections
+  const navSections = [...nav.children];
+  if (navSections.length >= 1) navSections[0].classList.add('nav-brand');
+  const toolsSection = navSections.find((s, i) => i > 0 && s.querySelector('a'));
+  if (toolsSection) {
+    toolsSection.classList.add('nav-tools');
   }
+  navSections.forEach((s, i) => {
+    if (i > 0 && s !== toolsSection) s.classList.add('nav-sections');
+  });
 
   // clean up brand link
   const navBrand = nav.querySelector('.nav-brand');
