@@ -1,9 +1,9 @@
-# Your Project's Title...
-Your project's description...
+# Summit 26 Gallery
+Product Creation Lab — A voice-driven, agentic AI workflow experience where booth visitors collaborate with AI agents to brainstorm, name, and launch a brand-new product concept in under 10 minutes.
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+- Preview: https://main--summit26-gallery--accentureabg.aem.page/
+- Live: https://main--summit26-gallery--accentureabg.aem.live/
 
 ## Documentation
 
