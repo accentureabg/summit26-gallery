@@ -54,9 +54,14 @@ header nav .nav-brand img {
   height: auto;
 }
 
-/* hide default sections and hamburger — this design uses a simple menu trigger */
+/* hide default sections — only when it's a true middle nav (not the only non-brand section) */
 header nav .nav-sections {
   display: none;
+}
+
+/* ensure tools section is always visible */
+header nav .nav-tools {
+  display: block;
 }
 
 header nav .nav-hamburger {
