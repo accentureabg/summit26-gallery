@@ -59,17 +59,13 @@ header nav .nav-sections {
   display: none;
 }
 
-/* ensure tools section is always visible */
-header nav .nav-tools {
-  display: block;
-}
-
 header nav .nav-hamburger {
   display: none;
 }
 
 /* tools / menu trigger */
 header nav .nav-tools {
+  display: block;
   font-size: 28px;
   font-weight: 600;
   cursor: pointer;
