@@ -276,7 +276,7 @@ main > .section {
 main > .section > div {
   max-width: 1440px;
   margin: auto;
-  padding: 0 40px;
+  padding: 0 16px;
 }
 
 main > .section:first-of-type {
