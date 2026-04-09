@@ -58,6 +58,19 @@
   src: local('Helvetica Neue'), local('Helvetica'), local('Arial');
 }
 
+/* Breakpoints:
+   Mobile: < 414px
+   Tablet: 414px — 1023px
+   Desktop: >= 1024px
+*/
+
+@media (width >= 414px) {
+  :root {
+    --heading-font-size-xxl: 40px;
+    --heading-font-size-xl: 32px;
+  }
+}
+
 @media (width >= 1024px) {
   :root {
     --heading-font-size-xxl: 48px;
