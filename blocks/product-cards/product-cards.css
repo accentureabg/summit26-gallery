@@ -48,6 +48,15 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.product-cards .product-card:hover .product-card-body,
+.product-cards .product-card:focus-visible .product-card-body {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .product-cards .product-card-number {
