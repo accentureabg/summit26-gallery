@@ -3,14 +3,19 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 16px;
+}
+
+@media (width >= 414px) {
+  .product-cards ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (width >= 1024px) {
   .product-cards ul {
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
   }
 }
 
