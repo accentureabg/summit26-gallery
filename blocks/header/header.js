@@ -34,20 +34,17 @@ export default async function decorate(block) {
     }
   }
 
-  // wire up menu trigger
-  const navTools = nav.querySelector('.nav-tools');
-  if (navTools) {
-    const menuLink = navTools.querySelector('a');
-    if (menuLink) {
-      menuLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        const menuPanel = document.querySelector('.menu-panel');
-        if (menuPanel) {
-          menuPanel.classList.toggle('open');
-          document.body.classList.toggle('menu-open');
-        }
-      });
-    }
+  // wire up menu trigger — find Menu link in any nav section
+  const menuLink = nav.querySelector('a[href="#"], a[href*="menu"]');
+  if (menuLink) {
+    menuLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const menuPanel = document.querySelector('.menu-panel');
+      if (menuPanel) {
+        menuPanel.classList.toggle('open');
+        document.body.classList.toggle('menu-open');
+      }
+    });
   }
 
   const navWrapper = document.createElement('div');
