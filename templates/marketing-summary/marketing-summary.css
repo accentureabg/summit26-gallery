@@ -9,6 +9,11 @@
    PAGE LAYOUT
    ----------------------------------------------- */
 body.marketing-summary-template {
+  --background-color: #fff;
+  --text-color: #000;
+  --light-color: #f5f5f5;
+  --dark-color: #333;
+
   background-color: #fff;
   color: #000;
 }
