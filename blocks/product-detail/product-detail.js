@@ -52,27 +52,40 @@ export default function decorate(block) {
   // listen for product detail events
   document.addEventListener('product-detail-open', (e) => {
     const {
-      image, number, description, creator, link,
+      image, number, name, description, creator, siteUrl, dateCreated,
     } = e.detail;
 
     // set image
     imageWrap.innerHTML = '';
     if (image) {
-      imageWrap.append(image);
+      if (typeof image === 'string') {
+        const img = document.createElement('img');
+        img.src = image;
+        img.alt = name || '';
+        imageWrap.append(img);
+      } else {
+        imageWrap.append(image);
+      }
     }
 
     // set content
     let html = '<div class="product-detail-meta">';
-    html += `<div class="product-detail-field"><span class="product-detail-label">Project</span><span class="product-detail-value">${number || ''}</span></div>`;
+    if (name) {
+      html += `<div class="product-detail-field"><span class="product-detail-label">Project title</span><span class="product-detail-value">${name}</span></div>`;
+    }
     html += `<div class="product-detail-field product-detail-field-desc"><span class="product-detail-label">Description</span><span class="product-detail-value">${description || ''}</span></div>`;
     html += '</div>';
 
     if (creator) {
-      html += `<div class="product-detail-creator"><span class="product-detail-label">Created by</span><span class="product-detail-value product-detail-creator-name">${creator}</span></div>`;
+      html += `<div class="product-detail-creator"><span class="product-detail-label">Designed by</span><span class="product-detail-value product-detail-creator-name">${creator}</span></div>`;
     }
 
-    if (link) {
-      html += `<a href="${link}" class="product-detail-link" target="_blank" rel="noopener noreferrer">
+    if (dateCreated) {
+      html += `<div class="product-detail-date"><span class="product-detail-label">Created</span><span class="product-detail-value">${dateCreated}</span></div>`;
+    }
+
+    if (siteUrl) {
+      html += `<a href="${siteUrl}" class="product-detail-link" target="_blank" rel="noopener noreferrer">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/><path d="M10 8l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
         Product Site
       </a>`;
