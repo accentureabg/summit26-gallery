@@ -52,7 +52,7 @@ export default function decorate(block) {
   // listen for product detail events
   document.addEventListener('product-detail-open', (e) => {
     const {
-      image, number, name, description, creator, siteUrl, dateCreated,
+      image, name, description, creator, siteUrl, dateCreated,
     } = e.detail;
 
     // set image
