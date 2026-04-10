@@ -194,10 +194,19 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
-async function loadPage() {
+// eslint-disable-next-line import/prefer-default-export
+export async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
 }
+
+(function da() {
+  const { searchParams } = new URL(window.location.href);
+  const hasPreview = searchParams.has('dapreview');
+  if (hasPreview) import('../tools/da/da.js').then((mod) => mod.default(loadPage));
+  const hasQE = searchParams.has('quick-edit');
+  if (hasQE) import('../tools/quick-edit/quick-edit.js').then((mod) => mod.default());
+}());
 
 loadPage();
