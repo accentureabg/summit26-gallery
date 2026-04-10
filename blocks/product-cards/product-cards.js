@@ -27,18 +27,18 @@ function createCard(product) {
   }
   li.append(imageWrap);
 
-  // body: session ID + name
+  // body: name + brief description (shown on hover)
   const bodyWrap = document.createElement('div');
   bodyWrap.className = 'product-card-body';
 
-  const num = document.createElement('span');
-  num.className = 'product-card-number';
-  num.textContent = product.SessionID || '';
-  bodyWrap.append(num);
+  const nameEl = document.createElement('span');
+  nameEl.className = 'product-card-number';
+  nameEl.textContent = product.Name || '';
+  bodyWrap.append(nameEl);
 
   const descEl = document.createElement('span');
   descEl.className = 'product-card-desc';
-  descEl.textContent = product.Name || '';
+  descEl.textContent = product['Brief Description'] || '';
   bodyWrap.append(descEl);
 
   li.append(bodyWrap);
