@@ -127,12 +127,26 @@ export function decorateMain(main) {
 }
 
 /**
+ * Loads template CSS if a template is specified in page metadata.
+ * Adds body class `{template}-template` when loaded.
+ */
+function loadTemplate() {
+  const template = document.querySelector('meta[name="template"]')?.content;
+  if (!template) return;
+  const name = template.toLowerCase().replace(/\s+/g, '-');
+  loadCSS(`${window.hlx.codeBasePath}/templates/${name}/${name}.css`).then(() => {
+    document.body.classList.add(`${name}-template`);
+  });
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  loadTemplate();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
