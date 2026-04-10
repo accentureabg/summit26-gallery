@@ -1,0 +1,11 @@
+{
+  "project": "Summit 26 Gallery",
+  "plugins": [
+    {
+      "id": "quick-edit",
+      "title": "Quick Edit",
+      "event": "quick-edit",
+      "environments": [ "dev", "preview" ]
+    }
+  ]
+}
