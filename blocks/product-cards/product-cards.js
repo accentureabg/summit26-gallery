@@ -1,83 +1,128 @@
 /**
  * Product Cards block — gallery grid of product items.
- * Each row: image | product number + description
+ *
+ * Data source: /products.json (spreadsheet in DA)
+ * Expected columns: number, name, description, creator, image
+ *
+ * Fallback: if the block has authored rows (image | text), uses those instead.
+ *
  * Clicking a card opens the product-detail modal.
  * @param {Element} block
  */
-export default function decorate(block) {
+
+function createCard(product) {
+  const li = document.createElement('li');
+  li.className = 'product-card';
+
+  // image
+  const imageWrap = document.createElement('div');
+  imageWrap.className = 'product-card-image';
+  if (product.image) {
+    const img = document.createElement('img');
+    img.src = product.image;
+    img.alt = product.name || '';
+    img.loading = 'lazy';
+    imageWrap.append(img);
+  }
+  li.append(imageWrap);
+
+  // body: product number + name
+  const bodyWrap = document.createElement('div');
+  bodyWrap.className = 'product-card-body';
+
+  const num = document.createElement('span');
+  num.className = 'product-card-number';
+  num.textContent = product.number || '';
+  bodyWrap.append(num);
+
+  const descEl = document.createElement('span');
+  descEl.className = 'product-card-desc';
+  descEl.textContent = product.name || '';
+  bodyWrap.append(descEl);
+
+  li.append(bodyWrap);
+
+  // store data for modal
+  if (product.creator) li.dataset.creator = product.creator;
+  if (product.description) li.dataset.description = product.description;
+
+  // click to open modal
+  li.addEventListener('click', () => {
+    const event = new CustomEvent('product-detail-open', {
+      detail: {
+        image: li.querySelector('.product-card-image img')?.cloneNode(true),
+        number: product.number,
+        description: product.description || product.name,
+        creator: product.creator,
+      },
+      bubbles: true,
+    });
+    document.dispatchEvent(event);
+  });
+
+  li.setAttribute('tabindex', '0');
+  li.setAttribute('role', 'button');
+
+  return li;
+}
+
+function renderCardsFromRows(block) {
   const ul = document.createElement('ul');
 
   [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-    li.className = 'product-card';
-
     const cols = [...row.children];
     const imageCol = cols[0];
     const bodyCol = cols[1];
 
+    const product = {};
+
     // image
-    if (imageCol) {
-      const imageWrap = document.createElement('div');
-      imageWrap.className = 'product-card-image';
-      const pic = imageCol.querySelector('picture') || imageCol.querySelector('img');
-      if (pic) imageWrap.append(pic);
-      li.append(imageWrap);
-    }
+    const pic = imageCol?.querySelector('picture, img');
+    if (pic) product.image = pic.querySelector('img')?.src || pic.src;
 
-    // body: product number + description
+    // body
     if (bodyCol) {
-      const bodyWrap = document.createElement('div');
-      bodyWrap.className = 'product-card-body';
-
       const productNum = bodyCol.querySelector('h3, h4, strong');
-      if (productNum) {
-        const num = document.createElement('span');
-        num.className = 'product-card-number';
-        num.textContent = productNum.textContent;
-        bodyWrap.append(num);
-      }
+      if (productNum) product.number = productNum.textContent;
 
-      const desc = bodyCol.querySelector('p:not(:has(strong)):not(:has(a))');
-      if (desc) {
-        const descEl = document.createElement('span');
-        descEl.className = 'product-card-desc';
-        descEl.textContent = desc.textContent;
-        bodyWrap.append(descEl);
-      }
+      const paragraphs = bodyCol.querySelectorAll('p');
+      if (paragraphs[0]) product.name = paragraphs[0].textContent;
+      if (paragraphs[1]) product.description = paragraphs[1].textContent;
 
-      // store full description + creator for the modal
       const creator = bodyCol.querySelector('em');
-      if (creator) li.dataset.creator = creator.textContent;
-
-      const fullDesc = bodyCol.querySelector('p:nth-of-type(2)');
-      if (fullDesc) li.dataset.description = fullDesc.textContent;
-
-      const link = bodyCol.querySelector('a');
-      if (link) li.dataset.link = link.href;
-
-      li.append(bodyWrap);
+      if (creator) product.creator = creator.textContent;
     }
 
-    // click to open modal
-    li.addEventListener('click', () => {
-      const event = new CustomEvent('product-detail-open', {
-        detail: {
-          image: li.querySelector('.product-card-image picture, .product-card-image img')?.cloneNode(true),
-          number: li.querySelector('.product-card-number')?.textContent,
-          description: li.dataset.description || li.querySelector('.product-card-desc')?.textContent,
-          creator: li.dataset.creator,
-          link: li.dataset.link,
-        },
-        bubbles: true,
-      });
-      document.dispatchEvent(event);
-    });
-
-    li.setAttribute('tabindex', '0');
-    li.setAttribute('role', 'button');
-
-    ul.append(li);
+    ul.append(createCard(product));
   });
 
   block.replaceChildren(ul);
+}
+
+async function renderCardsFromSheet(block) {
+  try {
+    const resp = await fetch('/products.json');
+    if (!resp.ok) return false;
+    const json = await resp.json();
+    const products = json.data || json;
+    if (!products.length) return false;
+
+    const ul = document.createElement('ul');
+    products.forEach((product) => {
+      ul.append(createCard(product));
+    });
+
+    block.replaceChildren(ul);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export default async function decorate(block) {
+  // Try sheet first, fall back to authored content
+  const loaded = await renderCardsFromSheet(block);
+  if (!loaded) {
+    renderCardsFromRows(block);
+  }
 }
