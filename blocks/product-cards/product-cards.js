@@ -4,7 +4,7 @@
  * Data source: /products.json (spreadsheet in DA)
  * Expected columns: number, name, description, creator, image
  *
- * Fallback: if the block has authored rows (image | text), uses those instead.
+ * Sheet-only: page is blank if no data in the sheet.
  *
  * Clicking a card opens the product-detail modal.
  * @param {Element} block
@@ -66,39 +66,6 @@ function createCard(product) {
   return li;
 }
 
-function renderCardsFromRows(block) {
-  const ul = document.createElement('ul');
-
-  [...block.children].forEach((row) => {
-    const cols = [...row.children];
-    const imageCol = cols[0];
-    const bodyCol = cols[1];
-
-    const product = {};
-
-    // image
-    const pic = imageCol?.querySelector('picture, img');
-    if (pic) product.image = pic.querySelector('img')?.src || pic.src;
-
-    // body
-    if (bodyCol) {
-      const productNum = bodyCol.querySelector('h3, h4, strong');
-      if (productNum) product.number = productNum.textContent;
-
-      const paragraphs = bodyCol.querySelectorAll('p');
-      if (paragraphs[0]) product.name = paragraphs[0].textContent;
-      if (paragraphs[1]) product.description = paragraphs[1].textContent;
-
-      const creator = bodyCol.querySelector('em');
-      if (creator) product.creator = creator.textContent;
-    }
-
-    ul.append(createCard(product));
-  });
-
-  block.replaceChildren(ul);
-}
-
 async function renderCardsFromSheet(block) {
   try {
     const resp = await fetch('/products.json');
@@ -120,9 +87,8 @@ async function renderCardsFromSheet(block) {
 }
 
 export default async function decorate(block) {
-  // Try sheet first, fall back to authored content
-  const loaded = await renderCardsFromSheet(block);
-  if (!loaded) {
-    renderCardsFromRows(block);
-  }
+  // Clear authored content — sheet is the only data source
+  block.textContent = '';
+
+  await renderCardsFromSheet(block);
 }
