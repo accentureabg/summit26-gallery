@@ -111,6 +111,7 @@ body.marketing-summary-template main > .section h2 {
   line-height: 1.2;
   margin: 0 0 8px;
   color: #000;
+  max-width: 60%;
 }
 
 body.marketing-summary-template main > .section h3 {
