@@ -301,7 +301,6 @@ main > .section:first-of-type > .default-content-wrapper p {
 @media (width >= 1024px) {
   main > .section:first-of-type > .default-content-wrapper p {
     font-size: var(--heading-font-size-xl);
-    padding: 56px 0;
   }
 }
 
