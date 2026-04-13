@@ -10,14 +10,31 @@
 .cards > ul > li {
   border: 1px solid #dadada;
   background-color: var(--background-color);
+  border-radius: 16px;
+  padding: 24px;
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: 0;
+}
+
+.cards .cards-card-body h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.cards .cards-card-body h3 picture,
+.cards .cards-card-body h3 img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  order: 2;
 }
 
 .cards .cards-card-image {
   line-height: 0;
 }
-
-
