@@ -99,6 +99,13 @@ body.marketing-summary-template main > .section.dark p {
 }
 
 /* -----------------------------------------------
+   Centered Section
+   ----------------------------------------------- */
+body.marketing-summary-template main > .section.centered {
+  text-align: center;
+}
+
+/* -----------------------------------------------
    CONTENT SECTIONS — white background
    ----------------------------------------------- */
 body.marketing-summary-template main > .section {
