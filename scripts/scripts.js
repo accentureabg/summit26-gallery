@@ -206,7 +206,12 @@ export async function loadPage() {
   const hasPreview = searchParams.has('dapreview');
   if (hasPreview) import('../tools/da/da.js').then((mod) => mod.default(loadPage));
   const hasQE = searchParams.has('quick-edit');
-  if (hasQE) import('../tools/quick-edit/quick-edit.js').then((mod) => mod.default());
+  if (hasQE) {
+    // Wait for page to load before initializing quick-edit
+    document.addEventListener('DOMContentLoaded', () => {
+      import('../tools/quick-edit/quick-edit.js').then((mod) => mod.default());
+    });
+  }
 }());
 
 loadPage();
