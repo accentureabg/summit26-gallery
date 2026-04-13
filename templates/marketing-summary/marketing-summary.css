@@ -104,6 +104,13 @@ body.marketing-summary-template main > .section.dark p {
 body.marketing-summary-template main > .section.centered {
   text-align: center;
 }
+body.marketing-summary-template main > .section.centered h2 {
+  max-width: 100%;
+}
+body.marketing-summary-template main > .section.centered .columns-img-col:nth-child() {
+  width: 443px;
+}
+
 
 /* -----------------------------------------------
    CONTENT SECTIONS — white background
