@@ -34,18 +34,25 @@ header nav a:any-link {
   text-decoration: none;
 }
 
-/* brand */
+/* brand — "Product" on line 1, "Creation Lab" on line 2 */
 header .nav-brand {
   font-size: 28px;
   font-weight: 600;
   line-height: 1.1;
-  max-width: 140px;
+  max-width: 200px;
+}
+
+@media (width >= 414px) {
+  header .nav-brand {
+    font-size: 32px;
+    max-width: 230px;
+  }
 }
 
 @media (width >= 1024px) {
   header .nav-brand {
     font-size: var(--heading-font-size-xxl);
-    max-width: unset;
+    max-width: 320px;
   }
 }
 
