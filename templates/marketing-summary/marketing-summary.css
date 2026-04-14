@@ -227,6 +227,15 @@ body.marketing-summary-template .columns h2 {
     grid-template-columns: repeat(3, 1fr);
      align-items: start; 
   }
+     body.marketing-summary-template main > .section.infinitecols  img {
+   height: 500px
+  }
+     body.marketing-summary-template main > .section.infinitecols  img:nth-child(2) {
+  height: 240px;
+  }
+       body.marketing-summary-template main > .section.infinitecols  img:nth-child(3) {
+  height: 240px;
+  }
 
 /* -----------------------------------------------
    COLUMNS BLOCK — piccols
