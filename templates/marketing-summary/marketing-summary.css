@@ -30,9 +30,9 @@ body.marketing-summary-template main {
 }
 
 body.marketing-summary-template main > .section > div {
-  max-width: 820px;
+  max-width: 758px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 80px 0;
 }
 
 /* -----------------------------------------------
@@ -99,8 +99,18 @@ body.marketing-summary-template main > .section.dark p {
 }
 
 /* -----------------------------------------------
+   Invention Section
+   ----------------------------------------------- */
+  body.marketing-summary-template main > .section.invention > div {
+    max-width: 1047px;
+  }
+   
+/* -----------------------------------------------
    howitworks Section
    ----------------------------------------------- */
+  body.marketing-summary-template main > .section.howitworks > div {
+    max-width: 1047px;
+  }
 body.marketing-summary-template main > .section.howitworks {
   text-align: center;
 }
@@ -114,10 +124,12 @@ body.marketing-summary-template main > .section.howitworks .columns-wrapper {
   padding-top: 30px;
 }
 
-
 /* -----------------------------------------------
    Marketing CARDS BLOCK — marketingcards
    ----------------------------------------------- */
+    body.marketing-summary-template main > .section.marketingcards > div {
+    max-width: 1047px;
+  }
 body.marketing-summary-template .cards > ul {
   list-style: none;
   margin: 0;
@@ -154,10 +166,18 @@ body.marketing-summary-template .cards li p {
 /* -----------------------------------------------
    Product hero newproducthero
    ----------------------------------------------- */
+    body.marketing-summary-template main > .section.newproducthero {
+   background-color: black;
+  }
+     body.marketing-summary-template main > .section.marketingcards > div {
+    padding: 0;
+  }
+      body.marketing-summary-template main > .section.newproducthero .hero picture{
+ z-index: 0;
+  }
 
-
-/* -----------------------------------------------
-   COLUMNS BLOCK — infinitecols
+ /* -----------------------------------------------
+   COLUMNS BLOCK — ALL
    ----------------------------------------------- */
 body.marketing-summary-template .columns > div {
   display: grid;
@@ -177,11 +197,25 @@ body.marketing-summary-template .columns h2 {
   font-weight: 700;
   line-height: 1.15;
 }
-
-
+/* -----------------------------------------------
+   COLUMNS BLOCK — infinitecols
+   ----------------------------------------------- */
+  body.marketing-summary-template main > .section.marketingcards > div {
+    max-width: 1047px;
+  }
 
 /* -----------------------------------------------
    COLUMNS BLOCK — piccols
+   ----------------------------------------------- */
+/* -----------------------------------------------
+   COLUMNS BLOCK — examplecols
+   ----------------------------------------------- */
+
+/* -----------------------------------------------
+   COLUMNS BLOCK — customjourney
+   ----------------------------------------------- */
+/* -----------------------------------------------
+   Bottom Hero
    ----------------------------------------------- */
 
 /* -----------------------------------------------
