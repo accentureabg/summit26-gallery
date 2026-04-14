@@ -1,15 +1,36 @@
+/* Mobile: horizontal swipe carousel */
 .product-cards ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
+.product-cards ul::-webkit-scrollbar {
+  display: none;
+}
+
+.product-cards ul > li {
+  scroll-snap-align: start;
+  flex: 0 0 85%;
+}
+
+/* Tablet: 3-column grid */
 @media (width >= 414px) {
   .product-cards ul {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
+  .product-cards ul > li {
+    flex: none;
   }
 }
 
