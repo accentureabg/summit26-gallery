@@ -14,22 +14,22 @@ function createRow(product) {
   listRow.setAttribute('tabindex', '0');
   listRow.setAttribute('role', 'button');
 
-  // product number
+  // product name
   const num = document.createElement('span');
   num.className = 'product-list-col product-list-col-num';
-  num.textContent = product['Session ID'] || product.SessionID || '';
+  num.textContent = product.Name || '';
   listRow.append(num);
 
-  // name
+  // description (elevator pitch)
   const desc = document.createElement('span');
   desc.className = 'product-list-col product-list-col-desc';
-  desc.textContent = product.Name || '';
+  desc.textContent = product['Elevator Pitch'] || '';
   listRow.append(desc);
 
-  // creator
+  // creator (designer)
   const creator = document.createElement('span');
   creator.className = 'product-list-col product-list-col-creator';
-  creator.textContent = product['Created By'] || '';
+  creator.textContent = product.Designer || '';
   listRow.append(creator);
 
   // click to open modal
@@ -46,7 +46,7 @@ function createRow(product) {
         number: product['Session ID'] || product.SessionID,
         name: product.Name,
         description: product['Long Description'] || product.Name,
-        creator: product['Created By'],
+        creator: product.Designer,
         siteUrl: product['Site URL'],
         dateCreated: product['Date Created'],
       },
@@ -75,7 +75,7 @@ export default async function decorate(block) {
     const headerRow = document.createElement('div');
     headerRow.className = 'product-list-header';
     headerRow.innerHTML = `
-      <span class="product-list-col product-list-col-num">Product #</span>
+      <span class="product-list-col product-list-col-num">Product</span>
       <span class="product-list-col product-list-col-desc">Description</span>
       <span class="product-list-col product-list-col-creator">Creator</span>
     `;
