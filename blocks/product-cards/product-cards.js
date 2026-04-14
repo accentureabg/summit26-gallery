@@ -54,7 +54,7 @@ function createCard(product) {
     const event = new CustomEvent('product-detail-open', {
       detail: {
         image: li.querySelector('.product-card-image img')?.cloneNode(true),
-        number: product.SessionID,
+        number: product['Session ID'] || product.SessionID,
         name: product.Name,
         description: product['Long Description'] || product.Name,
         creator: product['Created By'],
@@ -81,9 +81,11 @@ async function renderCardsFromSheet(block) {
     if (!products.length) return false;
 
     const ul = document.createElement('ul');
-    products.forEach((product) => {
-      ul.append(createCard(product));
-    });
+    products
+      .filter((product) => product.Name && product.Name.trim())
+      .forEach((product) => {
+        ul.append(createCard(product));
+      });
 
     block.replaceChildren(ul);
     return true;
