@@ -178,12 +178,17 @@ body.marketing-summary-template .cards li p {
    ----------------------------------------------- */
     body.marketing-summary-template main > .section.newproducthero {
    background-color: black;
+   padding: 0;
   }
-     body.marketing-summary-template main > .section.marketingcards > div {
+  body.marketing-summary-template main > .section.newproducthero > div {
     padding: 0;
   }
       body.marketing-summary-template main > .section.newproducthero .hero picture{
  z-index: 0;
+  }
+body.marketing-summary-template main > .section.newproducthero .hero p{
+color: white;
+font-size: 32px;
   }
 
  /* -----------------------------------------------
