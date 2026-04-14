@@ -122,13 +122,13 @@ body.modal-open {
   gap: 8px;
   font-size: var(--body-font-size-s);
   font-weight: 500;
-  color: var(--modal-text);
+  color: var(--modal-text) !important;
   text-decoration: none;
 }
 
 .product-detail-link:hover {
   text-decoration: underline;
-  color: var(--modal-text);
+  color: var(--modal-text) !important;
 }
 
 .product-detail-link svg {
