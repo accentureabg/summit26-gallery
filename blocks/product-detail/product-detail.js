@@ -81,7 +81,7 @@ export default function decorate(block) {
     }
 
     if (dateCreated) {
-      html += `<div class="product-detail-date"><span class="product-detail-label">Created</span><span class="product-detail-value">${dateCreated}</span></div>`;
+      html += `<div class="product-detail-date"><span class="product-detail-label">Created </span><span class="product-detail-value">${dateCreated}</span></div>`;
     }
 
     if (siteUrl) {
