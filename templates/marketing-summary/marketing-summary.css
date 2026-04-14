@@ -32,6 +32,8 @@ body.marketing-summary-template main {
 body.marketing-summary-template main > .section > div {
   max-width: 758px;
   margin: 0 auto;
+}
+body.marketing-summary-template main > .section {
   padding: 80px 0;
 }
 
@@ -221,9 +223,6 @@ body.marketing-summary-template .columns h2 {
 /* -----------------------------------------------
    CONTENT SECTIONS — white background
    ----------------------------------------------- */
-body.marketing-summary-template main > .section {
-  padding: 48px 0;
-}
 
 body.marketing-summary-template main > .section h2 {
   font-size: 28px;
@@ -275,7 +274,6 @@ body.marketing-summary-template a {
 body.marketing-summary-template a:hover {
   color: #333;
 }
-
 
 /* -----------------------------------------------
    CTA SECTION — last content section
