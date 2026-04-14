@@ -99,22 +99,90 @@ body.marketing-summary-template main > .section.dark p {
 }
 
 /* -----------------------------------------------
-   Centered Section
+   howitworks Section
    ----------------------------------------------- */
-body.marketing-summary-template main > .section.centered {
+body.marketing-summary-template main > .section.howitworks {
   text-align: center;
 }
-body.marketing-summary-template main > .section.centered h2 {
+body.marketing-summary-template main > .section.howitworks h2 {
   max-width: 100%;
 }
-body.marketing-summary-template main > .section.centered .columns-img-col:nth-of-type(2) {
+body.marketing-summary-template main > .section.howitworks .columns-img-col:nth-of-type(2) {
   width: 443px;
 }
-body.marketing-summary-template main > .section.centered .columns-wrapper {
+body.marketing-summary-template main > .section.howitworks .columns-wrapper {
   padding-top: 30px;
 }
 
 
+/* -----------------------------------------------
+   Marketing CARDS BLOCK — marketingcards
+   ----------------------------------------------- */
+body.marketing-summary-template .cards > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (width >= 600px) {
+  body.marketing-summary-template .cards > ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+body.marketing-summary-template .cards li {
+  background: #f5f5f5;
+  border-radius: 16px;
+  padding: 32px 24px;
+}
+
+body.marketing-summary-template .cards li h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+body.marketing-summary-template .cards li p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+}
+/* -----------------------------------------------
+   Product hero newproducthero
+   ----------------------------------------------- */
+
+
+/* -----------------------------------------------
+   COLUMNS BLOCK — infinitecols
+   ----------------------------------------------- */
+body.marketing-summary-template .columns > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (width >= 768px) {
+  body.marketing-summary-template .columns > div {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+body.marketing-summary-template .columns h2 {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+
+
+/* -----------------------------------------------
+   COLUMNS BLOCK — piccols
+   ----------------------------------------------- */
 
 /* -----------------------------------------------
    CONTENT SECTIONS — white background
@@ -129,7 +197,6 @@ body.marketing-summary-template main > .section h2 {
   line-height: 1.2;
   margin: 0 0 8px;
   color: #000;
-  max-width: 60%;
 }
 
 body.marketing-summary-template main > .section h3 {
@@ -175,64 +242,6 @@ body.marketing-summary-template a:hover {
   color: #333;
 }
 
-/* -----------------------------------------------
-   COLUMNS BLOCK — side by side
-   ----------------------------------------------- */
-body.marketing-summary-template .columns > div {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  align-items: center;
-}
-
-@media (width >= 768px) {
-  body.marketing-summary-template .columns > div {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-body.marketing-summary-template .columns h2 {
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1.15;
-}
-
-/* -----------------------------------------------
-   CARDS BLOCK — workflow steps grid
-   ----------------------------------------------- */
-body.marketing-summary-template .cards > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
-
-@media (width >= 600px) {
-  body.marketing-summary-template .cards > ul {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-body.marketing-summary-template .cards li {
-  background: #f5f5f5;
-  border-radius: 16px;
-  padding: 32px 24px;
-}
-
-body.marketing-summary-template .cards li h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0 0 8px;
-}
-
-body.marketing-summary-template .cards li p {
-  font-size: 15px;
-  line-height: 1.5;
-  color: #555;
-  margin: 0;
-}
 
 /* -----------------------------------------------
    CTA SECTION — last content section
