@@ -107,7 +107,7 @@ body.marketing-summary-template main > .section.centered {
 body.marketing-summary-template main > .section.centered h2 {
   max-width: 100%;
 }
-body.marketing-summary-template main > .section.centered .columns-img-col:nth-child() {
+body.marketing-summary-template main > .section.centered .columns-img-col:nth-of-type(2) {
   width: 443px;
 }
 
