@@ -1,7 +1,7 @@
 /**
  * Product List block — table view of products.
  *
- * Data source: /products.json (spreadsheet in DA)
+ * Data source: /form.json (spreadsheet in DA)
  * Expected columns: SessionID, Name, Long Description, Created By, Image URL
  *
  * Sheet-only: list is blank if no data in the sheet.
@@ -62,7 +62,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   try {
-    const resp = await fetch('/products.json');
+    const resp = await fetch('/form.json');
     if (!resp.ok) return;
     const json = await resp.json();
     const products = json.data || json;

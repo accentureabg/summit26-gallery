@@ -1,7 +1,7 @@
 /**
  * Product Cards block — gallery grid of product items.
  *
- * Data source: /products.json (spreadsheet in DA)
+ * Data source: /form.json (spreadsheet in DA)
  * Expected columns: SessionID, Name, Long Description, Created By, Image URL
  * Optional columns: Brief Description, Site URL, Date Created
  *
@@ -74,7 +74,7 @@ function createCard(product) {
 
 async function renderCardsFromSheet(block) {
   try {
-    const resp = await fetch('/products.json');
+    const resp = await fetch('/form.json');
     if (!resp.ok) return false;
     const json = await resp.json();
     const products = json.data || json;
