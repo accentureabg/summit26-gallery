@@ -34,6 +34,11 @@ function injectPublishButton() {
     }
     .quick-edit-publish:hover { background: #0067b8; }
     .quick-edit-publish:disabled { background: #999; cursor: not-allowed; }
+    .quick-edit-buttons { display: flex !important; }
+    .quick-edit-buttons .quick-edit-exit,
+    .quick-edit-buttons .quick-edit-preview,
+    .quick-edit-buttons .quick-edit-publish { display: flex !important; }
+    .quick-edit-buttons .quick-edit-close { display: none !important; }
   `;
   document.head.appendChild(style);
 
