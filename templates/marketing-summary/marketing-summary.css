@@ -110,6 +110,10 @@ body.marketing-summary-template main > .section.centered h2 {
 body.marketing-summary-template main > .section.centered .columns-img-col:nth-of-type(2) {
   width: 443px;
 }
+body.marketing-summary-template main > .section.centered .columns-wrapper {
+  padding-top: 30px;
+}
+
 
 
 /* -----------------------------------------------
