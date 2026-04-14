@@ -253,6 +253,9 @@ body.marketing-summary-template .columns h2 {
   body.marketing-summary-template main > .section.customerjourney  > div {
     max-width: 1047px;
   }
+           body.marketing-summary-template main > .section.customerjourney  .columns > div {
+   grid-template-columns: 1fr;
+  }
 /* -----------------------------------------------
    Bottom Hero
    ----------------------------------------------- */
