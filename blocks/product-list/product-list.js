@@ -81,7 +81,7 @@ export default async function decorate(block) {
     `;
     table.append(headerRow);
 
-    products.filter((product) => product.Name && product.Name.trim()).forEach((product) => {
+    products.filter((product) => product.Name && product.Name.trim()).reverse().forEach((product) => {
       table.append(createRow(product));
     });
 

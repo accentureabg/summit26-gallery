@@ -83,6 +83,7 @@ async function renderCardsFromSheet(block) {
     const ul = document.createElement('ul');
     products
       .filter((product) => product.Name && product.Name.trim())
+      .reverse()
       .forEach((product) => {
         ul.append(createCard(product));
       });
