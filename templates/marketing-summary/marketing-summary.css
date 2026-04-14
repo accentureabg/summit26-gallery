@@ -190,6 +190,11 @@ body.marketing-summary-template main > .section.newproducthero .hero p{
 color: white;
 font-size: 32px;
   }
+  body.marketing-summary-template main > .section.newproducthero .hero div:nth-child(2) {
+    margin-top: 14%;
+    margin-left: 26%;
+  }
+      
 
  /* -----------------------------------------------
    COLUMNS BLOCK — ALL
