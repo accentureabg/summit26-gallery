@@ -140,6 +140,14 @@ body.marketing-summary-template .cards > ul {
   grid-template-columns: 1fr;
   gap: 16px;
 }
+body.marketing-summary-template .cards .cards-card-image {
+  display: inline-block;
+}
+body.marketing-summary-template .cards .cards-card-body {
+  display: inline-block;
+  width: 90%;
+}
+
 
 @media (width >= 600px) {
   body.marketing-summary-template .cards > ul {
