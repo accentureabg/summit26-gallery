@@ -17,7 +17,7 @@ function createRow(product) {
   // product number
   const num = document.createElement('span');
   num.className = 'product-list-col product-list-col-num';
-  num.textContent = product.SessionID || '';
+  num.textContent = product['Session ID'] || product.SessionID || '';
   listRow.append(num);
 
   // name
@@ -43,7 +43,7 @@ function createRow(product) {
     const event = new CustomEvent('product-detail-open', {
       detail: {
         image: img,
-        number: product.SessionID,
+        number: product['Session ID'] || product.SessionID,
         name: product.Name,
         description: product['Long Description'] || product.Name,
         creator: product['Created By'],
@@ -81,7 +81,7 @@ export default async function decorate(block) {
     `;
     table.append(headerRow);
 
-    products.forEach((product) => {
+    products.filter((product) => product.Name && product.Name.trim()).forEach((product) => {
       table.append(createRow(product));
     });
 
