@@ -123,7 +123,7 @@ body.marketing-summary-template main > .section.howitworks .columns-img-col:nth-
   width: 443px;
 }
 body.marketing-summary-template main > .section.howitworks .columns-wrapper {
-  padding-top: 30px;
+  padding-top: 56px;
 }
 
 /* -----------------------------------------------
@@ -202,24 +202,42 @@ body.marketing-summary-template .columns h2 {
 /* -----------------------------------------------
    COLUMNS BLOCK — infinitecols
    ----------------------------------------------- */
-  body.marketing-summary-template main > .section.marketingcards > div {
+  body.marketing-summary-template main > .section.infinitecols  > div {
     max-width: 1047px;
   }
 
 /* -----------------------------------------------
    COLUMNS BLOCK — piccols
    ----------------------------------------------- */
+     body.marketing-summary-template main > .section.piccols  > div {
+    max-width: 1047px;
+  }
 /* -----------------------------------------------
    COLUMNS BLOCK — examplecols
    ----------------------------------------------- */
+       body.marketing-summary-template main > .section.examplecols  > div {
+    max-width: 1047px;
+  }
 
 /* -----------------------------------------------
    COLUMNS BLOCK — customjourney
    ----------------------------------------------- */
+  body.marketing-summary-template main > .section.customerjourney  > div {
+    max-width: 1047px;
+  }
 /* -----------------------------------------------
    Bottom Hero
    ----------------------------------------------- */
-
+ body.marketing-summary-template main > .section.bottomhero  > div {
+    max-width: 1047px;
+  }
+  /* -----------------------------------------------
+  Interested Button
+   ----------------------------------------------- */
+ body.marketing-summary-template main > .section.interested p:last-child {
+    background-color: black;
+    color: white;
+  }
 /* -----------------------------------------------
    CONTENT SECTIONS — white background
    ----------------------------------------------- */
