@@ -305,6 +305,7 @@ body.marketing-summary-template .columns h2 {
     text-decoration: none;
     border: 2px solid #000;
     transition: background-color 0.2s, color 0.2s;
+    margin-top: 32px;
   }
 
  body.marketing-summary-template main > .section.interested p:last-child a:hover {
