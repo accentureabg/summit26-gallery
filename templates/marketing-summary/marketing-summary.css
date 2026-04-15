@@ -237,6 +237,9 @@ body.marketing-summary-template .columns h2 {
      body.marketing-summary-template main > .section.piccols  > div {
     max-width: 1047px;
   }
+          body.marketing-summary-template main > .section.piccols .columns > div {
+   grid-template-columns: 1fr;
+  }
 /* -----------------------------------------------
    COLUMNS BLOCK — examplecols
    ----------------------------------------------- */
