@@ -232,7 +232,12 @@ body.marketing-summary-template .columns h2 {
     body.marketing-summary-template main > .section.infinitecols  .columns > div {
     grid-template-columns: 1fr;
   }
-
+    body.marketing-summary-template main > .section.infinitecols  p {
+   font-size: 12px;
+   color: #555555;
+   font-style: italic;
+   padding-top: 18px;
+  }
 /* -----------------------------------------------
    COLUMNS BLOCK — piccols
    ----------------------------------------------- */
@@ -251,6 +256,12 @@ body.marketing-summary-template .columns h2 {
          body.marketing-summary-template main > .section.examplecols .columns > div {
    grid-template-columns: 1fr;
   }
+      body.marketing-summary-template main > .section.examplecols  p {
+   font-size: 12px;
+   color: #555555;
+   font-style: italic;
+   padding-top: 18px;
+  }
 
 /* -----------------------------------------------
    COLUMNS BLOCK — customjourney
@@ -267,12 +278,18 @@ body.marketing-summary-template .columns h2 {
  body.marketing-summary-template main > .section.bottomhero  > div {
     max-width: 1047px;
   }
+            body.marketing-summary-template main > .section.bottomhero  .columns > div {
+   grid-template-columns: 1fr;
+  }
+        body.marketing-summary-template main > .section.bottomhero  p {
+   font-size: 12px;
+   color: #555555;
+   font-style: italic;
+   padding-top: 18px;
+  }
   /* -----------------------------------------------
   Interested / Back to Start Button
    ----------------------------------------------- */
- body.marketing-summary-template main > .section.interested {
-    text-align: center;
-  }
 
  body.marketing-summary-template main > .section.interested p:last-child a {
     display: inline-block;
@@ -346,18 +363,7 @@ body.marketing-summary-template a:hover {
   color: #333;
 }
 
-/* -----------------------------------------------
-   CTA SECTION — last content section
-   ----------------------------------------------- */
-body.marketing-summary-template main > .section:nth-last-of-type(2) {
-  border-top: 1px solid #e0e0e0;
-  padding-top: 48px;
-}
 
-body.marketing-summary-template main > .section:nth-last-of-type(2) a {
-  color: #000;
-  font-weight: 600;
-}
 
 /* -----------------------------------------------
    MOBILE
