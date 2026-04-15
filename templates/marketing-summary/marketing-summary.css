@@ -110,8 +110,11 @@ body.marketing-summary-template main > .section.dark p {
 /* -----------------------------------------------
    howitworks Section
    ----------------------------------------------- */
-  body.marketing-summary-template main > .section.howitworks > div {
+body.marketing-summary-template main > .section.howitworks > div {
     max-width: 1047px;
+  }
+body.marketing-summary-template main > .section.howitworks .columns > div {
+   grid-template-columns: 1fr;
   }
 body.marketing-summary-template main > .section.howitworks {
   text-align: center;
@@ -177,8 +180,8 @@ body.marketing-summary-template .cards li p {
    Product hero newproducthero
    ----------------------------------------------- */
     body.marketing-summary-template main > .section.newproducthero {
-   background-color: black;
    padding: 0;
+    max-width: 1104px;
   }
   body.marketing-summary-template main > .section.newproducthero > div {
     padding: 0;
