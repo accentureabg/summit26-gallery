@@ -181,10 +181,11 @@ body.marketing-summary-template .cards li p {
    ----------------------------------------------- */
     body.marketing-summary-template main > .section.newproducthero {
    padding: 0;
-    max-width: 1104px;
+   
   }
   body.marketing-summary-template main > .section.newproducthero > div {
     padding: 0;
+     max-width: 1104px;
   }
       body.marketing-summary-template main > .section.newproducthero .hero picture{
  z-index: 0;
