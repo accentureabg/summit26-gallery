@@ -237,6 +237,7 @@ body.marketing-summary-template .columns h2 {
    color: #555555;
    font-style: italic;
    padding-top: 18px;
+   margin-bottom: 0;
   }
 /* -----------------------------------------------
    COLUMNS BLOCK — piccols
@@ -261,6 +262,7 @@ body.marketing-summary-template .columns h2 {
    color: #555555;
    font-style: italic;
    padding-top: 18px;
+   margin-bottom: 0;
   }
 
 /* -----------------------------------------------
@@ -286,6 +288,7 @@ body.marketing-summary-template .columns h2 {
    color: #555555;
    font-style: italic;
    padding-top: 18px;
+   margin-bottom: 0;
   }
   /* -----------------------------------------------
   Interested / Back to Start Button
