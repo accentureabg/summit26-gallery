@@ -231,8 +231,7 @@ body.marketing-summary-template .columns h2 {
     max-width: 1047px;
   }
     body.marketing-summary-template main > .section.infinitecols  .columns > div {
-    grid-template-columns: repeat(3, 1fr);
-     align-items: start; 
+    grid-template-columns: 1fr;
   }
 
 /* -----------------------------------------------
