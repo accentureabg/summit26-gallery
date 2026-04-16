@@ -34,12 +34,12 @@ header nav a:any-link {
   text-decoration: none;
 }
 
-/* brand — "Product" on line 1, "Creation Lab" on line 2 */
+/* brand — "Infinite Objects" on line 1, "Product Gallery" on line 2 */
 header .nav-brand {
   font-size: 28px;
   font-weight: 600;
   line-height: 1.1;
-  max-width: 200px;
+  max-width: 220px;
 }
 
 @media (width >= 414px) {
