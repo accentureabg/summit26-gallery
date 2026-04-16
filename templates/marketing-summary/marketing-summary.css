@@ -55,6 +55,9 @@ body.marketing-summary-template main > .section.dark > div {
   position: relative;
     z-index: -2;
 }
+body.marketing-summary-template main > .section.dark .hero img {
+  object-fit: unset;
+}
 
 /* Back link — top left */
 body.marketing-summary-template main > .section.dark a {
