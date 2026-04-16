@@ -94,6 +94,7 @@ body.appear {
 
 header {
   height: var(--nav-height);
+  margin-bottom: 24px;
 }
 
 header .header,
