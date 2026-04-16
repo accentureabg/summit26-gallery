@@ -19,24 +19,18 @@ body.menu-open {
   overflow: hidden;
 }
 
-@media (width >= 1024px) {
-  .menu-panel {
-    width: 65%;
-    right: -65%;
-  }
+.menu-panel .menu-panel-inner {
+  min-height: 100%;
 }
 
-.menu-panel .menu-panel-inner {
+/* -----------------------------------------------
+   MOBILE VIEW
+   ----------------------------------------------- */
+.menu-panel .menu-panel-mobile {
   padding: 24px;
   min-height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-@media (width >= 1024px) {
-  .menu-panel .menu-panel-inner {
-    padding: 48px 80px;
-  }
 }
 
 /* Header: brand + close */
@@ -54,7 +48,7 @@ body.menu-open {
   max-width: 160px;
 }
 
-.menu-panel .menu-panel-close {
+.menu-panel .menu-panel-close-text {
   background: none;
   border: none;
   color: #fff;
@@ -65,7 +59,7 @@ body.menu-open {
   font-family: inherit;
 }
 
-.menu-panel .menu-panel-close:hover {
+.menu-panel .menu-panel-close-text:hover {
   opacity: 0.7;
 }
 
@@ -75,11 +69,11 @@ body.menu-open {
 }
 
 .menu-panel .menu-panel-item {
-  border-top: 1px solid rgba(255 255 255 / 20%);
+  border-top: 1px solid rgb(255 255 255 / 20%);
 }
 
 .menu-panel .menu-panel-item:last-child {
-  border-bottom: 1px solid rgba(255 255 255 / 20%);
+  border-bottom: 1px solid rgb(255 255 255 / 20%);
 }
 
 .menu-panel .menu-panel-item-title {
@@ -98,7 +92,6 @@ body.menu-open {
   display: none;
 }
 
-/* Plus/minus icon */
 .menu-panel .menu-panel-item-title::after {
   content: '+';
   font-size: 24px;
@@ -114,7 +107,7 @@ body.menu-open {
   padding: 0 0 20px;
   font-size: 14px;
   line-height: 1.6;
-  color: rgba(255 255 255 / 80%);
+  color: rgb(255 255 255 / 80%);
 }
 
 .menu-panel .menu-panel-item-body a {
@@ -124,4 +117,102 @@ body.menu-open {
 
 .menu-panel .menu-panel-item-body a:hover {
   opacity: 0.8;
+}
+
+/* Hide desktop on mobile */
+.menu-panel .menu-panel-desktop {
+  display: none;
+}
+
+/* -----------------------------------------------
+   DESKTOP VIEW (>= 1024px)
+   ----------------------------------------------- */
+@media (width >= 1024px) {
+  .menu-panel {
+    width: 65%;
+    right: -65%;
+  }
+
+  /* Hide mobile, show desktop */
+  .menu-panel .menu-panel-mobile {
+    display: none;
+  }
+
+  .menu-panel .menu-panel-desktop {
+    display: flex;
+    flex-direction: column;
+    padding: 48px 60px;
+    min-height: 100%;
+    position: relative;
+  }
+
+  /* X close button — top right */
+  .menu-panel .menu-panel-close-x {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgb(255 255 255 / 30%);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-panel .menu-panel-close-x:hover {
+    background: rgb(255 255 255 / 10%);
+  }
+
+  /* Two-column grid */
+  .menu-panel .menu-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    flex: 1;
+    margin-top: 20px;
+  }
+
+  /* Nav column */
+  .menu-panel .menu-panel-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(255 255 255 / 60%);
+    margin-bottom: 16px;
+  }
+
+  .menu-panel .menu-panel-link {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .menu-panel .menu-panel-link:hover {
+    text-decoration: underline;
+    color: #fff;
+  }
+
+  /* Description column */
+  .menu-panel .menu-panel-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgb(255 255 255 / 90%);
+  }
+
+  .menu-panel .menu-panel-desc p {
+    margin: 0 0 16px;
+  }
+
+  .menu-panel .menu-panel-desc a {
+    color: #fff;
+    text-decoration: underline;
+  }
 }
