@@ -103,6 +103,16 @@ function addMobileNav(block, ul) {
 
   nav.append(prevBtn, nextBtn);
 
+  // Info row elements (created before updateCounter references them)
+  const infoRow = document.createElement('div');
+  infoRow.className = 'product-cards-info';
+
+  const firstCard = cards[0];
+  const infoName = document.createElement('span');
+  infoName.className = 'product-cards-info-name';
+  infoName.textContent = firstCard
+    ?.querySelector('.product-card-number')?.textContent || '';
+
   // Update counter and info name on scroll
   function updateCounter() {
     const { scrollLeft } = ul;
@@ -137,17 +147,6 @@ function addMobileNav(block, ul) {
     scrollToCard(1);
   });
   ul.addEventListener('scroll', updateCounter);
-
-  // Wrap card info + counter in a row below the carousel
-  const infoRow = document.createElement('div');
-  infoRow.className = 'product-cards-info';
-
-  // Show first card's info initially
-  const firstCard = cards[0];
-  const infoName = document.createElement('span');
-  infoName.className = 'product-cards-info-name';
-  infoName.textContent = firstCard
-    ?.querySelector('.product-card-number')?.textContent || '';
 
   infoRow.append(infoName, counter);
   block.append(nav, infoRow);
