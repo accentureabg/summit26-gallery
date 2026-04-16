@@ -103,7 +103,7 @@ function addMobileNav(block, ul) {
 
   nav.append(prevBtn, nextBtn);
 
-  // Update counter on scroll
+  // Update counter and info name on scroll
   function updateCounter() {
     const { scrollLeft } = ul;
     const cardWidth = cards[0].offsetWidth;
@@ -111,6 +111,12 @@ function addMobileNav(block, ul) {
     const idx = Math.round(scrollLeft / (cardWidth + gap));
     const current = Math.min(Math.max(idx + 1, 1), total);
     counter.textContent = `${current}/${total}`;
+    const card = cards[Math.min(idx, total - 1)];
+    if (card && infoName) {
+      infoName.textContent = card.querySelector(
+        '.product-card-number',
+      )?.textContent || '';
+    }
   }
 
   function scrollToCard(direction) {
@@ -132,7 +138,19 @@ function addMobileNav(block, ul) {
   });
   ul.addEventListener('scroll', updateCounter);
 
-  block.append(nav, counter);
+  // Wrap card info + counter in a row below the carousel
+  const infoRow = document.createElement('div');
+  infoRow.className = 'product-cards-info';
+
+  // Show first card's info initially
+  const firstCard = cards[0];
+  const infoName = document.createElement('span');
+  infoName.className = 'product-cards-info-name';
+  infoName.textContent = firstCard
+    ?.querySelector('.product-card-number')?.textContent || '';
+
+  infoRow.append(infoName, counter);
+  block.append(nav, infoRow);
 }
 
 async function renderCardsFromSheet(block) {

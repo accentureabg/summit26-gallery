@@ -31,26 +31,32 @@
   flex: 0 0 100%;
 }
 
-/* Card body visible on mobile (no hover needed) */
+/* Hide card body on mobile — info row shows name + counter */
 .product-cards .product-card-body {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-  opacity: 1;
-  transform: none;
-  padding: 12px 0;
+  display: none;
 }
 
-/* Counter — bottom right of card info */
+/* Info row: name + counter */
+.product-cards-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 0;
+  gap: 12px;
+}
+
+.product-cards-info-name {
+  font-size: var(--body-font-size-m, 18px);
+  font-weight: 600;
+  color: var(--text-color);
+  flex: 1;
+}
+
 .product-cards-counter {
-  position: absolute;
-  bottom: 60px;
-  right: 0;
   font-size: var(--body-font-size-s, 16px);
   font-weight: 500;
-  color: var(--text-color);
+  color: var(--text-color-muted);
+  white-space: nowrap;
 }
 
 /* Nav arrows — left and right of card */
@@ -144,14 +150,15 @@
     flex: none;
   }
 
-  /* Hide mobile nav on tablet+ */
+  /* Hide mobile nav and info row on tablet+ */
   .product-cards-nav,
-  .product-cards-counter {
+  .product-cards-info {
     display: none;
   }
 
   /* Hover-reveal body on tablet+ */
   .product-cards .product-card-body {
+    display: flex;
     flex-direction: column;
     opacity: 0;
     transform: translateY(8px);
