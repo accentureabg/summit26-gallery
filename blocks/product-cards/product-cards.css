@@ -73,7 +73,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
