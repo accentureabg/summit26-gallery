@@ -1,6 +1,13 @@
 /* Mobile: single card carousel with arrows */
 .product-cards {
   position: relative;
+  margin-top: 16px;
+}
+
+@media (width >= 414px) {
+  .product-cards {
+    margin-top: 0;
+  }
 }
 
 .product-cards ul {
