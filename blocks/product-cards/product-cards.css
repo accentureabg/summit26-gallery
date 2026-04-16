@@ -1,7 +1,7 @@
 /* Mobile: single card carousel with arrows */
 .product-cards {
   position: relative;
-  margin-top: 16px;
+  margin-top: 26px;
 }
 
 @media (width >= 414px) {
