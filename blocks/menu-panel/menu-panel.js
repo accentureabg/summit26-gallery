@@ -5,9 +5,9 @@
  * Desktop: two-column layout (nav links + description) on right 65%
  *
  * Content rows from DA:
- *   Row 1: navigation links
- *   Row 2: description text
- *   Row 3: company info + contact/social links
+ *   Row 1: navigation links (About, Future Showings, Contact Us)
+ *   Row 2: description text + Read more link
+ *   Row 3: col 1 = experience info, col 2 = contact info
  * @param {Element} block
  */
 export default function decorate(block) {
@@ -16,35 +16,33 @@ export default function decorate(block) {
 
   const rows = [...block.children];
 
-  // Gather nav items
+  // Gather nav items from row 1
   const linkEls = rows[0]?.querySelectorAll('a');
   const navItems = linkEls?.length
     ? [...linkEls]
     : [...(rows[0]?.querySelectorAll('li, p') || [])];
 
-  // Gather description text
+  // Gather description HTML from row 2
   let descHtml = '';
   if (rows[1]) {
-    const paras = rows[1].querySelectorAll('p');
-    paras.forEach((p) => {
-      descHtml += `<p>${p.innerHTML}</p>`;
-    });
-    if (!paras.length) descHtml = `<p>${rows[1].textContent.trim()}</p>`;
+    const wrapper = rows[1].querySelector('div') || rows[1];
+    descHtml = wrapper.innerHTML;
   }
 
-  // Gather contact content for accordion
-  let contactHtml = '';
-  if (rows[1]) contactHtml += rows[1].textContent.trim();
-  if (rows[2]) {
-    const paras = rows[2].querySelectorAll('p');
-    paras.forEach((p) => {
-      const link = p.querySelector('a');
-      if (link) {
-        contactHtml += `<br><br><a href="${link.href}">${link.textContent}</a>`;
-      } else if (!p.querySelector('strong')) {
-        contactHtml += `<br>${p.textContent.trim()}`;
-      }
-    });
+  // Gather row 3 columns content
+  const row3Cols = rows[2] ? [...rows[2].children] : [];
+  const futureShowingsHtml = row3Cols[0]?.innerHTML || '';
+  const contactHtml = row3Cols[1]?.innerHTML || '';
+
+  // Map accordion content by item title
+  function getAccordionBody(title) {
+    const t = title.toLowerCase();
+    if (t.includes('about')) return descHtml;
+    if (t.includes('future') || t.includes('showing')) {
+      return futureShowingsHtml;
+    }
+    if (t.includes('contact')) return contactHtml;
+    return '';
   }
 
   // === MOBILE: Header + Accordion ===
@@ -63,19 +61,16 @@ export default function decorate(block) {
 
   const accordion = document.createElement('div');
   accordion.className = 'menu-panel-accordion';
-  navItems.forEach((item, i) => {
+  navItems.forEach((item) => {
+    const title = item.textContent.trim();
     const details = document.createElement('details');
     details.className = 'menu-panel-item';
     const summary = document.createElement('summary');
     summary.className = 'menu-panel-item-title';
-    summary.textContent = item.textContent.trim();
+    summary.textContent = title;
     const body = document.createElement('div');
     body.className = 'menu-panel-item-body';
-    if (i === navItems.length - 1 && contactHtml) {
-      body.innerHTML = contactHtml;
-    } else {
-      body.textContent = 'Coming soon.';
-    }
+    body.innerHTML = getAccordionBody(title);
     details.append(summary, body);
     accordion.append(details);
   });
@@ -89,9 +84,9 @@ export default function decorate(block) {
   const closeX = document.createElement('button');
   closeX.className = 'menu-panel-close-x';
   closeX.setAttribute('aria-label', 'Close menu');
-  closeX.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-  </svg>`;
+  closeX.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24"
+    fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor"
+    stroke-width="2.5" stroke-linecap="round"/></svg>`;
 
   const desktopGrid = document.createElement('div');
   desktopGrid.className = 'menu-panel-grid';
