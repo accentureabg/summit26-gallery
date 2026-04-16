@@ -45,3 +45,38 @@
 .view-toggle .view-toggle-btn svg {
   flex-shrink: 0;
 }
+
+/* Mobile: compact pill toggle */
+@media (width < 414px) {
+  .view-toggle {
+    bottom: 24px;
+  }
+
+  .view-toggle .view-toggle-pill {
+    padding: 3px;
+    gap: 2px;
+    border: 1px solid #333;
+  }
+
+  .view-toggle .view-toggle-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    gap: 5px;
+  }
+
+  /* Hide icon on inactive button */
+  .view-toggle .view-toggle-btn:not(.active) svg {
+    display: none;
+  }
+
+  .view-toggle .view-toggle-btn.active {
+    background-color: var(--toggle-active-bg);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .view-toggle .view-toggle-btn:not(.active) {
+    color: var(--text-color-muted);
+  }
+}
