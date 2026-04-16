@@ -93,7 +93,7 @@ body.marketing-summary-template main > .section.dark p {
   max-width: 420px;
 }
 
-@media (width < 414px) {
+@media (width < 440px) {
   body.marketing-summary-template main > .section.dark > div {
     padding: 40px 24px 44px;
     border-radius: 16px;
@@ -376,7 +376,7 @@ body.marketing-summary-template a:hover {
 /* -----------------------------------------------
    MOBILE
    ----------------------------------------------- */
-@media (width < 414px) {
+@media (width < 440px) {
   body.marketing-summary-template main > .section.dark h1 {
     font-size: 36px;
   }

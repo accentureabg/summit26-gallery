@@ -47,7 +47,7 @@
 }
 
 /* Mobile: compact pill toggle */
-@media (width < 414px) {
+@media (width < 440px) {
   .view-toggle {
     bottom: 24px;
   }

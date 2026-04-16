@@ -59,12 +59,12 @@
 }
 
 /* Breakpoints:
-   Mobile: < 414px
-   Tablet: 414px — 1023px
+   Mobile: < 440px
+   Tablet: 440px — 1023px
    Desktop: >= 1024px
 */
 
-@media (width >= 414px) {
+@media (width >= 440px) {
   :root {
     --heading-font-size-xxl: 40px;
     --heading-font-size-xl: 32px;
