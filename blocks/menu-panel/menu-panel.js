@@ -1,7 +1,11 @@
 /**
- * Menu Panel block — blue slide-out panel.
- * Content rows:
- *   Row 1: navigation links (About, Contact Us, Legal)
+ * Menu Panel block — full-screen blue overlay with accordion nav.
+ *
+ * Mobile: accordion items (About, Future Showings, Contact Us)
+ * Desktop: two-column layout (nav links + description)
+ *
+ * Content rows from DA:
+ *   Row 1: navigation links (About, Future Showings, Contact Us)
  *   Row 2: description text
  *   Row 3: company info + contact/social links
  * @param {Element} block
@@ -10,111 +14,76 @@ export default function decorate(block) {
   const panel = document.createElement('div');
   panel.className = 'menu-panel-inner';
 
-  // close button
+  // Header: brand + close
+  const header = document.createElement('div');
+  header.className = 'menu-panel-header';
+
+  const brand = document.createElement('span');
+  brand.className = 'menu-panel-brand';
+  brand.textContent = 'Product Creation Lab';
+
   const closeBtn = document.createElement('button');
   closeBtn.className = 'menu-panel-close';
   closeBtn.setAttribute('aria-label', 'Close menu');
-  closeBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-  </svg>`;
-  panel.append(closeBtn);
+  closeBtn.textContent = 'Close';
 
-  // content area — two column layout
-  const contentGrid = document.createElement('div');
-  contentGrid.className = 'menu-panel-grid';
+  header.append(brand, closeBtn);
+  panel.append(header);
 
   const rows = [...block.children];
 
-  // left column: nav links
-  const leftCol = document.createElement('div');
-  leftCol.className = 'menu-panel-nav';
+  // Build accordion from nav links (row 0) and content (rows 1-2)
+  const accordion = document.createElement('div');
+  accordion.className = 'menu-panel-accordion';
 
   if (rows[0]) {
-    const label = document.createElement('span');
-    label.className = 'menu-panel-label';
-    label.textContent = 'Project';
-    leftCol.append(label);
-
     const links = rows[0].querySelectorAll('a');
-    if (links.length) {
-      links.forEach((a) => {
-        const navLink = document.createElement('a');
-        navLink.href = a.href;
-        navLink.className = 'menu-panel-link';
-        navLink.textContent = a.textContent;
-        leftCol.append(navLink);
-      });
-    } else {
-      // plain text list items
-      const items = rows[0].querySelectorAll('li, p');
-      items.forEach((item) => {
-        const navLink = document.createElement('span');
-        navLink.className = 'menu-panel-link';
-        navLink.textContent = item.textContent;
-        leftCol.append(navLink);
-      });
+    const items = links.length
+      ? [...links]
+      : [...rows[0].querySelectorAll('li, p')];
+
+    // Get content for the last item (Contact Us) from rows 1-2
+    let contactContent = '';
+    if (rows[1]) {
+      contactContent += rows[1].textContent.trim();
     }
-  }
-
-  // right column: description
-  const rightCol = document.createElement('div');
-  rightCol.className = 'menu-panel-desc';
-
-  if (rows[1]) {
-    const label = document.createElement('span');
-    label.className = 'menu-panel-label';
-    label.textContent = 'Description';
-    rightCol.append(label);
-
-    const descText = document.createElement('p');
-    descText.className = 'menu-panel-desc-text';
-    descText.textContent = rows[1].textContent.trim();
-    rightCol.append(descText);
-  }
-
-  contentGrid.append(leftCol, rightCol);
-
-  // footer area: company info + contact links
-  const footer = document.createElement('div');
-  footer.className = 'menu-panel-footer';
-
-  if (rows[2]) {
-    const cols = [...rows[2].children];
-    cols.forEach((col) => {
-      const section = document.createElement('div');
-      section.className = 'menu-panel-footer-col';
-
-      const heading = col.querySelector('h3, h4, strong');
-      if (heading) {
-        const label = document.createElement('span');
-        label.className = 'menu-panel-label';
-        label.textContent = heading.textContent;
-        section.append(label);
-      }
-
-      const paras = col.querySelectorAll('p');
+    if (rows[2]) {
+      const paras = rows[2].querySelectorAll('p');
       paras.forEach((p) => {
-        if (p.querySelector('strong') || p.querySelector('h3') || p.querySelector('h4')) return;
-        const text = document.createElement('p');
-        text.className = 'menu-panel-footer-text';
-        // check for links
         const link = p.querySelector('a');
         if (link) {
-          const a = document.createElement('a');
-          a.href = link.href;
-          a.textContent = link.textContent;
-          text.append(a);
-        } else {
-          text.textContent = p.textContent;
+          contactContent += `<br><br>${p.textContent.trim()}`;
+          contactContent += `<br><a href="${link.href}">${link.textContent}</a>`;
+        } else if (!p.querySelector('strong')) {
+          contactContent += `<br>${p.textContent.trim()}`;
         }
-        section.append(text);
       });
+    }
 
-      footer.append(section);
+    items.forEach((item, i) => {
+      const details = document.createElement('details');
+      details.className = 'menu-panel-item';
+
+      const summary = document.createElement('summary');
+      summary.className = 'menu-panel-item-title';
+      summary.textContent = item.textContent.trim();
+
+      const body = document.createElement('div');
+      body.className = 'menu-panel-item-body';
+
+      // Last item gets the contact content
+      if (i === items.length - 1 && contactContent) {
+        body.innerHTML = contactContent;
+      } else {
+        body.textContent = 'Coming soon.';
+      }
+
+      details.append(summary, body);
+      accordion.append(details);
     });
   }
 
-  panel.append(contentGrid, footer);
+  panel.append(accordion);
   block.replaceChildren(panel);
 
   // close handler
