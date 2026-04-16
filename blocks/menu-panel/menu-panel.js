@@ -91,25 +91,34 @@ export default function decorate(block) {
   const desktopGrid = document.createElement('div');
   desktopGrid.className = 'menu-panel-grid';
 
-  // Left: nav links
+  // Left: nav links as clickable items
   const navCol = document.createElement('div');
   navCol.className = 'menu-panel-nav';
   const menuLabel = document.createElement('span');
   menuLabel.className = 'menu-panel-label';
   menuLabel.textContent = 'Menu';
   navCol.append(menuLabel);
-  navItems.forEach((item) => {
-    const a = document.createElement('a');
-    a.href = item.href || '#';
-    a.className = 'menu-panel-link';
-    a.textContent = item.textContent.trim();
-    navCol.append(a);
-  });
 
-  // Right: description
+  // Right: content area that updates when nav item is clicked
   const descCol = document.createElement('div');
   descCol.className = 'menu-panel-desc';
   descCol.innerHTML = descHtml;
+
+  navItems.forEach((item, i) => {
+    const title = item.textContent.trim();
+    const btn = document.createElement('button');
+    btn.className = 'menu-panel-link';
+    if (i === 0) btn.classList.add('active');
+    btn.textContent = title;
+    btn.addEventListener('click', () => {
+      navCol.querySelectorAll('.menu-panel-link').forEach(
+        (b) => b.classList.remove('active'),
+      );
+      btn.classList.add('active');
+      descCol.innerHTML = getAccordionBody(title);
+    });
+    navCol.append(btn);
+  });
 
   desktopGrid.append(navCol, descCol);
   desktopView.append(closeX, desktopGrid);

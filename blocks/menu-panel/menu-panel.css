@@ -189,15 +189,23 @@ body.menu-open {
     display: block;
     font-size: 20px;
     font-weight: 700;
-    color: #fff;
+    color: rgb(255 255 255 / 50%);
     text-decoration: none;
     margin-bottom: 8px;
     line-height: 1.4;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    transition: color 0.2s;
   }
 
-  .menu-panel .menu-panel-link:hover {
-    text-decoration: underline;
+  .menu-panel .menu-panel-link:hover,
+  .menu-panel .menu-panel-link.active {
     color: #fff;
+    text-decoration: underline;
   }
 
   /* Description column */
