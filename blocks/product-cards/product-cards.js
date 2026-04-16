@@ -5,9 +5,9 @@
  * Expected columns: SessionID, Name, Long Description, Created By, Image URL
  * Optional columns: Brief Description, Site URL, Date Created
  *
- * Sheet-only: page is blank if no data in the sheet.
+ * Mobile: single card carousel with arrows and counter.
+ * Tablet/Desktop: grid view.
  *
- * Clicking a card opens the product-detail modal.
  * @param {Element} block
  */
 
@@ -27,7 +27,7 @@ function createCard(product) {
   }
   li.append(imageWrap);
 
-  // body: name + brief description (shown on hover)
+  // body: name + brief description
   const bodyWrap = document.createElement('div');
   bodyWrap.className = 'product-card-body';
 
@@ -44,20 +44,25 @@ function createCard(product) {
   li.append(bodyWrap);
 
   // store data for modal
-  if (product['Created By']) li.dataset.creator = product['Created By'];
-  if (product['Long Description']) li.dataset.description = product['Long Description'];
+  if (product.Designer) li.dataset.creator = product.Designer;
+  if (product['Long Description']) {
+    li.dataset.description = product['Long Description'];
+  }
   if (product['Site URL']) li.dataset.siteUrl = product['Site URL'];
-  if (product['Date Created']) li.dataset.dateCreated = product['Date Created'];
+  if (product['Date Created']) {
+    li.dataset.dateCreated = product['Date Created'];
+  }
 
   // click to open modal
   li.addEventListener('click', () => {
     const event = new CustomEvent('product-detail-open', {
       detail: {
-        image: li.querySelector('.product-card-image img')?.cloneNode(true),
+        image: li.querySelector('.product-card-image img')
+          ?.cloneNode(true),
         number: product['Session ID'] || product.SessionID,
         name: product.Name,
         description: product['Long Description'] || product.Name,
-        creator: product['Created By'],
+        creator: product.Designer,
         siteUrl: product['Site URL'],
         dateCreated: product['Date Created'],
       },
@@ -72,6 +77,64 @@ function createCard(product) {
   return li;
 }
 
+function addMobileNav(block, ul) {
+  const cards = ul.querySelectorAll('.product-card');
+  const total = cards.length;
+  if (total === 0) return;
+
+  // Counter
+  const counter = document.createElement('div');
+  counter.className = 'product-cards-counter';
+  counter.textContent = `1/${total}`;
+
+  // Nav arrows
+  const nav = document.createElement('div');
+  nav.className = 'product-cards-nav';
+
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'product-cards-prev';
+  prevBtn.setAttribute('aria-label', 'Previous');
+  prevBtn.innerHTML = '&#8249;';
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'product-cards-next';
+  nextBtn.setAttribute('aria-label', 'Next');
+  nextBtn.innerHTML = '&#8250;';
+
+  nav.append(prevBtn, nextBtn);
+
+  // Update counter on scroll
+  function updateCounter() {
+    const { scrollLeft } = ul;
+    const cardWidth = cards[0].offsetWidth;
+    const gap = parseInt(getComputedStyle(ul).gap, 10) || 0;
+    const idx = Math.round(scrollLeft / (cardWidth + gap));
+    const current = Math.min(Math.max(idx + 1, 1), total);
+    counter.textContent = `${current}/${total}`;
+  }
+
+  function scrollToCard(direction) {
+    const cardWidth = cards[0].offsetWidth;
+    const gap = parseInt(getComputedStyle(ul).gap, 10) || 0;
+    ul.scrollBy({
+      left: direction * (cardWidth + gap),
+      behavior: 'smooth',
+    });
+  }
+
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    scrollToCard(-1);
+  });
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    scrollToCard(1);
+  });
+  ul.addEventListener('scroll', updateCounter);
+
+  block.append(nav, counter);
+}
+
 async function renderCardsFromSheet(block) {
   try {
     const resp = await fetch('/form.json');
@@ -82,13 +145,14 @@ async function renderCardsFromSheet(block) {
 
     const ul = document.createElement('ul');
     products
-      .filter((product) => product.Name && product.Name.trim())
+      .filter((p) => p.Name && p.Name.trim())
       .reverse()
       .forEach((product) => {
         ul.append(createCard(product));
       });
 
     block.replaceChildren(ul);
+    addMobileNav(block, ul);
     return true;
   } catch {
     return false;
@@ -96,8 +160,6 @@ async function renderCardsFromSheet(block) {
 }
 
 export default async function decorate(block) {
-  // Clear authored content — sheet is the only data source
   block.textContent = '';
-
   await renderCardsFromSheet(block);
 }
