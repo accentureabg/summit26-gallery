@@ -40,6 +40,12 @@ body.marketing-summary-template main > .section {
 /* -----------------------------------------------
    DARK HERO — rounded card style
    ----------------------------------------------- */
+
+   @media (width < 440px) {
+  body.marketing-summary-template main > .section.dark .hero picture {
+    display: none;
+  }
+}
 body.marketing-summary-template main > .section.dark {
   background-color: transparent;
   padding: 16px;
@@ -81,7 +87,7 @@ body.marketing-summary-template main > .section.dark h1 {
   font-size: 40px;
   font-weight: 700;
   line-height: 1.1;
-  margin: 24px 0 20px;
+  margin: 9% 0 20px;
   color: #fff;
 }
 
