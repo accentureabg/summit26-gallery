@@ -300,28 +300,6 @@ body.marketing-summary-template .columns h2 {
    padding-top: 18px;
    margin-bottom: 0;
   }
-  /* -----------------------------------------------
-  Interested / Back to Start Button
-   ----------------------------------------------- */
-
- body.marketing-summary-template main > .section.interested p:last-child a {
-    display: inline-block;
-    background-color: #000;
-    color: #fff !important;
-    padding: 14px 32px;
-    border-radius: 100px;
-    font-size: 16px;
-    font-weight: 600;
-    text-decoration: none;
-    border: 2px solid #000;
-    transition: background-color 0.2s, color 0.2s;
-    margin-top: 32px;
-  }
-
- body.marketing-summary-template main > .section.interested p:last-child a:hover {
-    background-color: #333;
-    border-color: #333;
-  }
 /* -----------------------------------------------
    CONTENT SECTIONS — white background
    ----------------------------------------------- */
