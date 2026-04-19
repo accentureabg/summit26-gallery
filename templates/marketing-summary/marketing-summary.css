@@ -43,7 +43,7 @@ body.marketing-summary-template main > .section {
 
    @media (width < 440px) {
   body.marketing-summary-template main > .section.dark .hero picture {
-    display: none;
+   display: none;
   }
 }
 body.marketing-summary-template main > .section.dark {
@@ -62,7 +62,9 @@ body.marketing-summary-template main > .section.dark > div {
     z-index: -2;
 }
 body.marketing-summary-template main > .section.dark .hero img {
-  object-fit: unset;
+      object-fit: unset;
+    max-height: 125px;
+    width: auto;
 }
 
 /* Back link — top left */
