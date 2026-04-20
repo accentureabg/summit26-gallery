@@ -62,7 +62,7 @@ body.marketing-summary-template main > .section.dark > div {
     z-index: -2;
 }
 body.marketing-summary-template main > .section.dark .hero picture {
-    top: 32px;
+    top: 5%;
 }
 body.marketing-summary-template main > .section.dark .hero img {
       object-fit: unset;
@@ -92,7 +92,7 @@ body.marketing-summary-template main > .section.dark h1 {
   font-size: 40px;
   font-weight: 700;
   line-height: 1.1;
-  margin: 9% 0 20px;
+  margin: 12% 0 20px;
   color: #fff;
 }
 
