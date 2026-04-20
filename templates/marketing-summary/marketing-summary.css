@@ -61,6 +61,9 @@ body.marketing-summary-template main > .section.dark > div {
   position: relative;
     z-index: -2;
 }
+body.marketing-summary-template main > .section.dark .hero picture {
+    top: 32px;
+}
 body.marketing-summary-template main > .section.dark .hero img {
       object-fit: unset;
     max-height: 80px;
