@@ -63,7 +63,7 @@ body.marketing-summary-template main > .section.dark > div {
 }
 body.marketing-summary-template main > .section.dark .hero img {
       object-fit: unset;
-    max-height: 100px;
+    max-height: 80px;
     width: auto;
 }
 
